@@ -2,6 +2,15 @@ dwm - dynamic window manager
 ============================
 Custom DWM build based on version 6.2.
 
+Patches
+-------
+- dwm-actualfullscreen-20191112-cb3f58a.diff
+- dwm-movestack-6.1.diff
+- dwm-noborderfloatingfix-6.2.diff
+- dwm-nodmenu-6.2.diff
+- dwm-pertag-6.2.diff
+- dwm-scratchpad-6.2.diff
+- dwm-single-border.diff
 
 Requirements
 ------------
