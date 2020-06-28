@@ -11,6 +11,7 @@ Patches
 - dwm-pertag-6.2.diff
 - dwm-scratchpad-6.2.diff
 - dwm-single-border.diff
+- dwm-hide_vacant_tags-6.2.diff
 
 Requirements
 ------------
