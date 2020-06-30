@@ -50,6 +50,9 @@ static const Layout layouts[] = {
 #define XF86AudioMute           0x1008ff12
 #define XF86AudioLowerVolume    0x1008ff11
 #define XF86AudioRaiseVolume    0x1008ff13
+#define XF86AudioPlay           0x1008FF14
+#define XF86AudioPrev           0x1008FF16
+#define XF86AudioNext           0x1008FF17
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -126,6 +129,9 @@ static Key keys[] = {
 	{ 0,         XF86AudioMute,                spawn,          SHCMD("pulsemixer --toggle-mute; kill -44 $(pidof dwmblocks)") },
 	{ 0,         XF86AudioRaiseVolume,         spawn,          SHCMD("pulsemixer --change-volume +5; kill -44 $(pidof dwmblocks)") },
 	{ 0,         XF86AudioLowerVolume,         spawn,          SHCMD("pulsemixer --change-volume -5; kill -44 $(pidof dwmblocks)") },
+	{ 0,         XF86AudioPlay,                spawn,          SHCMD("mpc toggle") },
+	{ 0,         XF86AudioPrev,                spawn,          SHCMD("mpc prev") },
+	{ 0,         XF86AudioNext,                spawn,          SHCMD("mpc next") },
 };
 
 /* button definitions */
