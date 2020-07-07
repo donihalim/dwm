@@ -82,18 +82,19 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 
+	{ MODKEY,                       XK_Delete, spawn,          SHCMD("dmenu-action") },
 	{ MODKEY,                       XK_Insert, spawn,          SHCMD("clipmenu") },
 	{ MODKEY|ShiftMask,             XK_Insert, spawn,          SHCMD("st -e notetaking") },
 	{ 0,                            XK_Print,  spawn,          SHCMD("maimpick") },
 	{ ShiftMask,                    XK_Print,  spawn,          SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
 	{ MODKEY,                       XK_Print,  spawn,          SHCMD("dmenu-record") },
+	{ MODKEY,                       XK_m,      spawn,          SHCMD("st -e ncmpcpp") },
+	{ MODKEY|ShiftMask,             XK_m,      spawn,          SHCMD("st -e pulsemixer") },
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("st -e newsboat") },
 	{ MODKEY|ControlMask,           XK_w,      spawn,          SHCMD("st -e nmtui") },
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("st -e htop") },
 	{ MODKEY,                       XK_f,      spawn,          SHCMD("st -e lf") },
-	{ MODKEY,                       XK_m,      spawn,          SHCMD("st -e ncmpcpp") },
-	{ MODKEY|ShiftMask,             XK_m,      spawn,          SHCMD("st -e pulsemixer") },
 
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
@@ -124,8 +125,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 
-	{ 0,         XF86MonBrightnessDown,        spawn,          SHCMD("light -U 1") },
-	{ 0,         XF86MonBrightnessUp,          spawn,          SHCMD("light -A 1") },
+	{ 0,         XF86MonBrightnessDown,        spawn,          SHCMD("light -U 5") },
+	{ 0,         XF86MonBrightnessUp,          spawn,          SHCMD("light -A 5") },
 	{ 0,         XF86AudioMute,                spawn,          SHCMD("pulsemixer --toggle-mute; kill -44 $(pidof dwmblocks)") },
 	{ 0,         XF86AudioRaiseVolume,         spawn,          SHCMD("pulsemixer --change-volume +5; kill -44 $(pidof dwmblocks)") },
 	{ 0,         XF86AudioLowerVolume,         spawn,          SHCMD("pulsemixer --change-volume -5; kill -44 $(pidof dwmblocks)") },
