@@ -26,10 +26,8 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class               instance    title       tags mask     isfloating   monitor */
-	{ "mpv",               NULL,       NULL,       0,            1,           -1 },
-	{ "firefox",           NULL,       NULL,       1 << 8,       0,           -1 },
-	{ "Navigator",         NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class		instance	title		tags mask	isfloating	monitor */
+	{ "firefox",		NULL,		NULL,		0,		0,		-1 },
 };
 
 /* layout(s) */
@@ -45,14 +43,14 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define XF86MonBrightnessDown   0x1008ff03
-#define XF86MonBrightnessUp     0x1008ff02
-#define XF86AudioMute           0x1008ff12
-#define XF86AudioLowerVolume    0x1008ff11
-#define XF86AudioRaiseVolume    0x1008ff13
-#define XF86AudioPlay           0x1008FF14
-#define XF86AudioPrev           0x1008FF16
-#define XF86AudioNext           0x1008FF17
+#define XF86MonBrightnessDown	0x1008ff03
+#define XF86MonBrightnessUp	0x1008ff02
+#define XF86AudioMute		0x1008ff12
+#define XF86AudioLowerVolume	0x1008ff11
+#define XF86AudioRaiseVolume	0x1008ff13
+#define XF86AudioPlay		0x1008FF14
+#define XF86AudioPrev		0x1008FF16
+#define XF86AudioNext		0x1008FF17
 #define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
@@ -65,13 +63,14 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "90x30", NULL };
 
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	/* tag keys */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -81,21 +80,21 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-
-	{ MODKEY,                       XK_Delete, spawn,          SHCMD("dmenu-action") },
+	/* custom key bindings */
+	{ 0,                            XK_Print,  spawn,          SHCMD("maimpick") },
+	{ MODKEY,                       XK_Print,  spawn,          SHCMD("dmenu-record") },
 	{ MODKEY,                       XK_Insert, spawn,          SHCMD("clipmenu") },
 	{ MODKEY|ShiftMask,             XK_Insert, spawn,          SHCMD("st -e notetaking") },
-	{ 0,                            XK_Print,  spawn,          SHCMD("maimpick") },
-	{ ShiftMask,                    XK_Print,  spawn,          SHCMD("maim pic-full-$(date '+%y%m%d-%H%M-%S').png") },
-	{ MODKEY,                       XK_Print,  spawn,          SHCMD("dmenu-record") },
-	{ MODKEY,                       XK_m,      spawn,          SHCMD("st -e ncmpcpp") },
-	{ MODKEY|ShiftMask,             XK_m,      spawn,          SHCMD("st -e pulsemixer") },
-	{ MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },
+	{ MODKEY,                       XK_F10,    spawn,          SHCMD("st -e ncmpcpp") },
+	{ MODKEY|ShiftMask,             XK_F6,     spawn,          SHCMD("st -e pulsemixer") },
+	{ MODKEY,                       XK_w,      spawn,          SHCMD("st -e neomutt") },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          SHCMD("st -e newsboat") },
 	{ MODKEY|ControlMask,           XK_w,      spawn,          SHCMD("st -e nmtui") },
-	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("st -e htop") },
 	{ MODKEY,                       XK_f,      spawn,          SHCMD("st -e lf") },
-
+	{ MODKEY|ShiftMask,             XK_r,      spawn,          SHCMD("st -e htop") },
+	{ MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("dev-blog") },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("dev-dwm") },
+	/* default key bindings */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
@@ -124,7 +123,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-
+	/* special key bindings */
 	{ 0,         XF86MonBrightnessDown,        spawn,          SHCMD("light -U 5") },
 	{ 0,         XF86MonBrightnessUp,          spawn,          SHCMD("light -A 5") },
 	{ 0,         XF86AudioMute,                spawn,          SHCMD("pulsemixer --toggle-mute; kill -44 $(pidof dwmblocks)") },
